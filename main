@@ -1,0 +1,72 @@
+public class binario_decimal
+{
+	public static void main( String[] args)
+	{
+		int num_dec = 18,coeficiente=0,signal=0;
+		float num_frac = 0.37f;
+		String num_binario="",bin_coeficiente="",memoria="";
+
+		if(num_dec<0)
+		{
+			signal = 1;
+			num_dec = Math.abs(num_dec);
+		}
+
+		num_binario += toBinary(num_dec,num_binario);
+
+		coeficiente = (num_binario.length() -1) + 127;
+		
+		num_binario+=",";
+
+		int tam = 23 - num_binario.length();
+
+		//calcula a parte fracionaria;
+		for(int i=0;i<=tam;i++)
+		{
+			num_frac = num_frac * 2;
+			if(num_frac >= 1)
+			{
+				num_binario +="1";
+				num_frac = num_frac - 1;
+			}
+			else
+			{
+				num_binario +="0";
+			}
+		}
+
+		bin_coeficiente += toBinary(coeficiente,bin_coeficiente);
+
+		memoria +=signal+" "+bin_coeficiente+" "+num_binario;
+
+		System.out.println(memoria+" "+(memoria.length()-3) +"bits");
+	}
+
+	public static String reverse(String source)
+	{
+		int i, len = source.length();
+    	StringBuilder dest = new StringBuilder(len);
+
+    	for (i = (len - 1); i >= 0; i--){
+       		dest.append(source.charAt(i));
+    	}
+    	return dest.toString();
+	}
+
+	public static String toBinary(int num_dec,String num_binario)
+	{
+		while(num_dec > 0)
+		{
+			if((num_dec % 2) == 1)
+				num_binario += "1";
+			else
+				num_binario += "0";
+
+			num_dec = num_dec/2;
+		}
+		num_binario = reverse(num_binario);
+		return num_binario;
+	}
+
+}
+
