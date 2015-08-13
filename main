@@ -34,7 +34,7 @@ public class binario_decimal
 				num_binario +="0";
 			}
 		}
-
+		//este eh um comentario
 		bin_coeficiente += toBinary(coeficiente,bin_coeficiente);
 
 		memoria +=signal+" "+bin_coeficiente+" "+num_binario;
